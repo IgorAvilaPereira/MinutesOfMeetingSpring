@@ -7,12 +7,11 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan("controllers.")
-public class Main {
-    
+public class Main {    
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);                
     }
-      /*
+    /*
     @GetMapping("/produtos/hello")  
     public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
         return String.format("Hello %s!", name);
