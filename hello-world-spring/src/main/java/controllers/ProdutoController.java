@@ -5,6 +5,8 @@
 package controllers;
 
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,9 +19,14 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @RestController
 @RequestMapping(value = "/produtos")
-public class ProdutoController {              
+public class ProdutoController { 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+    
     @GetMapping("/hello")  
     public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+        String sql = "select count(*) from cliente;";  
+        System.out.println("Linhas:"+jdbcTemplate.queryForObject(sql, Integer.class));
         return String.format("Hello %s!", name);
     }
     @GetMapping("/teste")
