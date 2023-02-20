@@ -1,0 +1,20 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package persistence;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author iapereira
+ * @param <Model>
+ */
+public interface DAO<Model> {
+    public void delete(int id);
+    public void update(Model t);
+    public List<Model> list();
+    
+}
