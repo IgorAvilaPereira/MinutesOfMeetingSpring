@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import persistence.ProdutoRepository;
+import repository.ProdutoRepository;
 
 /**
  *
@@ -22,7 +22,7 @@ import persistence.ProdutoRepository;
  */
 @Controller
 @RequestMapping(value = "/produtos")
-@ComponentScan("persistence.")
+@ComponentScan("repository.")
 public class ProdutoController {     
     @Autowired
     private ProdutoRepository produtoRepository;
