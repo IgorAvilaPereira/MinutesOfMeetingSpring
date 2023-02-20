@@ -24,44 +24,45 @@ import repository.ProdutoRepository;
 @Controller
 @RequestMapping(value = "/produtos")
 @ComponentScan("repository.")
-public class ProdutoController {     
+public class ProdutoController {
+
     @Autowired
-    private ProdutoRepository produtoRepository;    
-    
+    private ProdutoRepository produtoRepository;
+
     @GetMapping("/tela_adicionar")
     public ModelAndView tela_adicionar() {
         return new ModelAndView("produtos/tela_adicionar");
-    } 
-    
+    }
+
     @PostMapping("/adicionar")
     public ModelAndView adicionar(Produto produto) {
         this.produtoRepository.save(produto);
         return this.listar();
-    }     
-    
-    @GetMapping("/listar")    
+    }
+
+    @GetMapping("/listar")
     public ModelAndView listar() {
         Map<String, Object> template = new HashMap();
         template.put("vetProduto", this.produtoRepository.list());
         return new ModelAndView("produtos/listar", template);
-    }    
-    
-    @GetMapping("/deletar/{id}")      
-    public ModelAndView deletar(@PathVariable("id") int id) {      
+    }
+
+    @GetMapping("/deletar/{id}")
+    public ModelAndView deletar(@PathVariable("id") int id) {
         this.produtoRepository.delete(id);
         return this.listar();
-    }    
-    
-    @GetMapping("/tela_editar/{id}")      
-    public ModelAndView tela_editar(@PathVariable("id") int id) {          
+    }
+
+    @GetMapping("/tela_editar/{id}")
+    public ModelAndView tela_editar(@PathVariable("id") int id) {
         Map<String, Object> template = new HashMap();
-        template.put("produto", this.produtoRepository.load(id));                      
+        template.put("produto", this.produtoRepository.load(id));
         return new ModelAndView("produtos/tela_editar", template);
-    }     
-    
+    }
+
     @PostMapping("/editar")
     public ModelAndView editar(Produto produto) {
         this.produtoRepository.update(produto);
         return this.listar();
-    } 
+    }
 }
