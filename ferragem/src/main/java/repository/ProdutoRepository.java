@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class ProdutoRepository implements IRepository<Produto> {
-    
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -29,11 +29,27 @@ public class ProdutoRepository implements IRepository<Produto> {
 
     @Override
     public void update(Produto t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sqlUpdate = "UPDATE produto SET descricao = ?, preco = ?, estoque = ? where id = ?";
+        jdbcTemplate.update(sqlUpdate, t.getDescricao(), t.getPreco(), t.getEstoque(), t.getId());
     }
 
     @Override
     public List<Produto> list() {
         return jdbcTemplate.query("SELECT * from produto", BeanPropertyRowMapper.newInstance(Produto.class));
+    }
+
+    @Override
+    public void save(Produto t) {
+        String sqlInsert = "INSERT INTO produto (descricao, preco, estoque) VALUES (?,?,?)";
+        jdbcTemplate.update(sqlInsert, t.getDescricao(), t.getPreco(), t.getEstoque());
+    }
+
+    @Override
+    public Produto load(int id) {
+        String sqlFind = "SELECT * FROM produto WHERE id = ?;";
+        return (Produto) jdbcTemplate.queryForObject(
+                sqlFind,
+                new Object[]{id},
+                new BeanPropertyRowMapper(Produto.class));
     }
 }
