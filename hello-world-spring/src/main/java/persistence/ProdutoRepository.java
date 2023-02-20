@@ -16,14 +16,15 @@ import org.springframework.stereotype.Repository;
  * @author iapereira
  */
 @Repository
-public class ProdutoRepository implements IRepository<Produto>{    
+public class ProdutoRepository implements IRepository<Produto> {
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Override
     public void delete(int id) {
-        String sqlDelete = "DELETE FROM produto where id=?";
-        jdbcTemplate.update(sqlDelete, id);        
+        String sqlDelete = "DELETE FROM produto where id = ?";
+        jdbcTemplate.update(sqlDelete, id);
     }
 
     @Override
@@ -33,6 +34,6 @@ public class ProdutoRepository implements IRepository<Produto>{
 
     @Override
     public List<Produto> list() {
-        return jdbcTemplate.query("SELECT * from produto", BeanPropertyRowMapper.newInstance(Produto.class));       
-    }    
+        return jdbcTemplate.query("SELECT * from produto", BeanPropertyRowMapper.newInstance(Produto.class));
+    }
 }
