@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import persistence.ProdutoDAO;
+import persistence.ProdutoRepository;
 
 /**
  *
@@ -26,18 +26,18 @@ import persistence.ProdutoDAO;
 @ComponentScan("persistence.")
 public class ProdutoController {     
     @Autowired
-    private ProdutoDAO produtoDAO;
+    private ProdutoRepository produtoRepository;
     
     @GetMapping("/listar")
     public ModelAndView listar() {
         Map<String, Object> template = new HashMap();
-        template.put("vetProduto", this.produtoDAO.list());
+        template.put("vetProduto", this.produtoRepository.list());
         return new ModelAndView("listar", template);
     }    
     
     @GetMapping("/deletar/{id}")      
     public ModelAndView deletar(@PathVariable("id") int id) {      
-        this.produtoDAO.delete(id);
+        this.produtoRepository.delete(id);
         return this.listar();
     }    
 }

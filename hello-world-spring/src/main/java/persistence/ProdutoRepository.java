@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
  * @author iapereira
  */
 @Repository
-public class ProdutoDAO implements DAO<Produto>{    
+public class ProdutoRepository implements IRepository<Produto>{    
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
