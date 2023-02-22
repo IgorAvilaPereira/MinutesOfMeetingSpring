@@ -16,6 +16,5 @@ public interface IRepository<Model> {
     public void delete(int id);
     public void update(Model t);
     public void save(Model t);
-    public List<Model> list();
-    
+    public List<Model> list();    
 }
