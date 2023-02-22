@@ -4,11 +4,16 @@
  */
 package model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import org.springframework.jdbc.core.RowMapper;
+
 /**
  *
  * @author iapereira
  */
-public class Produto {
+public class Produto /*implements RowMapper<Produto>*/ {
+
     private int id;
     private String descricao;
     private double estoque;
@@ -57,7 +62,13 @@ public class Produto {
     public String toString() {
         return "Produto{" + "id=" + id + ", descricao=" + descricao + ", estoque=" + estoque + ", preco=" + preco + '}';
     }
-    
-    
 
+//    @Override
+//    public Produto mapRow(ResultSet rs, int rowNum) throws SQLException {
+//        this.id = rs.getInt("id");
+//        this.descricao = rs.getString("descricao");
+//        this.estoque = rs.getDouble("estoque");
+//        this.preco = rs.getDouble("preco");
+//        return this;
+//    }
 }

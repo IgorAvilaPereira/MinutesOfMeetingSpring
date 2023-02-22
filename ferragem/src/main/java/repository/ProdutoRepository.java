@@ -47,9 +47,7 @@ public class ProdutoRepository implements IRepository<Produto> {
     @Override
     public Produto load(int id) {
         String sqlSelect = "SELECT * FROM produto WHERE id = ?;";
-        return (Produto) jdbcTemplate.queryForObject(
-                sqlSelect,
-                new Object[]{id},
-                new BeanPropertyRowMapper(Produto.class));
+        return (Produto) jdbcTemplate.queryForObject(sqlSelect, BeanPropertyRowMapper.newInstance(Produto.class), id);
+
     }
 }
